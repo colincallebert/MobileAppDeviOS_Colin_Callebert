@@ -30,6 +30,7 @@ struct FunctiesView: View {
                     .foregroundColor(beschrijvingKleur)
                     .padding()
                     .padding(.vertical)
+                    .lineLimit(nil)
             }
             .background(achtergrondKleur)
             .cornerRadius(20)

@@ -20,6 +20,7 @@ struct DetailScreen: View {
                     .font(.body)
                     .foregroundColor(.primary)
                     .padding()
+                    .lineLimit(nil)
                 
                 Button(action: {
                     showingReservationForm.toggle()

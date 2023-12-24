@@ -18,6 +18,7 @@ struct BeschrijvingView: View {
                     .background(achtergrondKleurVoorBeschrijving)
                     .cornerRadius(20)
                     .shadow(radius: 5)
+                    .lineLimit(nil)
                 
                 Spacer()
             }
