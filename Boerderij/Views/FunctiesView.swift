@@ -15,6 +15,7 @@ struct FunctiesView: View {
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(titelKleur)
+                    .padding(.vertical)
                 
                 Image(imageName)
                     .resizable()
@@ -22,12 +23,13 @@ struct FunctiesView: View {
                     .cornerRadius(10)
                     .shadow(radius: 4)
                     .frame(maxWidth: .infinity)
-                    .padding()
+                    .padding(.horizontal)
                 
                 Text(description)
                     .font(.body)
                     .foregroundColor(beschrijvingKleur)
                     .padding()
+                    .padding(.vertical)
             }
             .background(achtergrondKleur)
             .cornerRadius(20)

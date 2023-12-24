@@ -22,6 +22,8 @@
 		5DC021C52B387249000456EA /* TweedeScherm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC021C42B387249000456EA /* TweedeScherm.swift */; };
 		5DC021C72B387276000456EA /* ReservationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC021C62B387276000456EA /* ReservationFormView.swift */; };
 		5DC021C92B3872A1000456EA /* DetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC021C82B3872A1000456EA /* DetailScreen.swift */; };
+		5DC021CD2B388279000456EA /* ContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC021CC2B388279000456EA /* ContentController.swift */; };
+		5DC021CF2B38855F000456EA /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC021CE2B38855F000456EA /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		5DC021C42B387249000456EA /* TweedeScherm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweedeScherm.swift; sourceTree = "<group>"; };
 		5DC021C62B387276000456EA /* ReservationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationFormView.swift; sourceTree = "<group>"; };
 		5DC021C82B3872A1000456EA /* DetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreen.swift; sourceTree = "<group>"; };
+		5DC021CC2B388279000456EA /* ContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentController.swift; sourceTree = "<group>"; };
+		5DC021CE2B38855F000456EA /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 			children = (
 				5D9E89F72ACD9F870045ED02 /* BoerderijApp.swift */,
 				5DC021BF2B3870E9000456EA /* Views */,
+				5DC021CB2B388248000456EA /* ViewModel */,
 				5DC021CA2B387338000456EA /* Models */,
 				5D9E89FB2ACD9F8B0045ED02 /* Assets.xcassets */,
 				5D9E89FD2ACD9F8B0045ED02 /* Preview Content */,
@@ -155,6 +160,7 @@
 				5DC021C42B387249000456EA /* TweedeScherm.swift */,
 				5DC021C82B3872A1000456EA /* DetailScreen.swift */,
 				5DC021C62B387276000456EA /* ReservationFormView.swift */,
+				5DC021CE2B38855F000456EA /* SearchBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -165,6 +171,14 @@
 				5DC021B92B38313A000456EA /* Activities.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5DC021CB2B388248000456EA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5DC021CC2B388279000456EA /* ContentController.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +316,8 @@
 				5DC021BC2B387038000456EA /* HomeButton.swift in Sources */,
 				5DC021C32B387202000456EA /* FunctiesView.swift in Sources */,
 				5D9E89FA2ACD9F870045ED02 /* ContentView.swift in Sources */,
+				5DC021CF2B38855F000456EA /* SearchBar.swift in Sources */,
+				5DC021CD2B388279000456EA /* ContentController.swift in Sources */,
 				5D9E89F82ACD9F870045ED02 /* BoerderijApp.swift in Sources */,
 				5DC021C72B387276000456EA /* ReservationFormView.swift in Sources */,
 				5DC021C52B387249000456EA /* TweedeScherm.swift in Sources */,

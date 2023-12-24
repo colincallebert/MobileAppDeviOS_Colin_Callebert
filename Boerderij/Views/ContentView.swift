@@ -3,7 +3,10 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     @State var activities: [ActivityAPI] = []
-
+    
+    @StateObject var contentController = ContentController()
+    @State private var searchText = ""
+    
     
     var body: some View {
         TabView {
@@ -12,8 +15,10 @@ struct ContentView: View {
                     ScrollView {
                         VStack {
                             BeschrijvingView(colorScheme: colorScheme)
+                            SearchBar(text: $searchText)
+                                .padding(.vertical)
                             VStack(spacing: 20) {
-                                ForEach(activities, id: \.self) { activity in
+                                ForEach(contentController.filterActivities(searchText: searchText), id: \.self) { activity in
                                     FunctiesView(
                                         imageName:  activity.description.components(separatedBy:"|")[1],
                                         title: activity.title,
@@ -28,6 +33,7 @@ struct ContentView: View {
                         .task {
                             do {
                                 activities = try await getAllActivities()
+                                contentController.activities = activities
                             } catch {
                                 print("Error fetching data: \(error)")
                             }
