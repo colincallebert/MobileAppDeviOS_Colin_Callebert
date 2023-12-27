@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D2AC94F2B3C2417003619E8 /* Registrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2AC94E2B3C2417003619E8 /* Registrations.swift */; };
 		5D9E89F82ACD9F870045ED02 /* BoerderijApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E89F72ACD9F870045ED02 /* BoerderijApp.swift */; };
 		5D9E89FA2ACD9F870045ED02 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E89F92ACD9F870045ED02 /* ContentView.swift */; };
 		5D9E89FC2ACD9F8B0045ED02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D9E89FB2ACD9F8B0045ED02 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D2AC94E2B3C2417003619E8 /* Registrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registrations.swift; sourceTree = "<group>"; };
 		5D9E89F42ACD9F870045ED02 /* Boerderij.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boerderij.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9E89F72ACD9F870045ED02 /* BoerderijApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoerderijApp.swift; sourceTree = "<group>"; };
 		5D9E89F92ACD9F870045ED02 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				5DC021B92B38313A000456EA /* Activities.swift */,
+				5D2AC94E2B3C2417003619E8 /* Registrations.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				5DC021C32B387202000456EA /* FunctiesView.swift in Sources */,
 				5D9E89FA2ACD9F870045ED02 /* ContentView.swift in Sources */,
 				5DC021CF2B38855F000456EA /* SearchBar.swift in Sources */,
+				5D2AC94F2B3C2417003619E8 /* Registrations.swift in Sources */,
 				5DC021CD2B388279000456EA /* ContentController.swift in Sources */,
 				5D9E89F82ACD9F870045ED02 /* BoerderijApp.swift in Sources */,
 				5DC021C72B387276000456EA /* ReservationFormView.swift in Sources */,

@@ -4,7 +4,14 @@ struct DetailScreen: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var showingReservationForm = false
     
-    var activity: ActivityAPI
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    @State private var alertTitle = ""
+    @State private var reloadToggle = false
+    
+    @StateObject var contentController = ContentController()
+    
+    @State var activity: ActivityAPI
     
     var body: some View {
         List {
@@ -22,18 +29,61 @@ struct DetailScreen: View {
                     .padding()
                     .lineLimit(nil)
                 
-                Button(action: {
-                    showingReservationForm.toggle()
-                }) {
-                    Text("Maak een reservering")
-                        .padding()
-                        .background(Color(#colorLiteral(red: 0.15, green: 0.45, blue: 0.2, alpha: 1.0)))
-                        .bold()
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Datum: \(formattedDate(activity.starttime))")
+                    Text("Tijd: \(formattedTimeRange(activity.starttime, endTime: activity.endtime))")
                 }
-                .sheet(isPresented: $showingReservationForm) {
-                    ReservationFormView(activity: activity)
+                .font(.body)
+                .foregroundColor(.primary)
+                .padding()
+                
+                if (activity.amount == 0){
+                    Button(action: {
+                        showingReservationForm.toggle()
+                    }) {
+                        Text("Maak een reservering")
+                            .padding()
+                            .background(Color(#colorLiteral(red: 0.15, green: 0.45, blue: 0.2, alpha: 1.0)))
+                            .bold()
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .sheet(isPresented: $showingReservationForm) {
+                        ReservationFormView(activity: activity)
+                    }
+                }
+                else{
+                    Button(action: {
+                        Task {
+                            do {
+                                try await contentController.registartieVerwijderen(activityId: activity.id)
+                                alertMessage = "Registartie succesvol verwijderd!"
+                                alertTitle = "Succes"
+                                showAlert = true
+                            } catch {
+                                alertMessage = "Er is iets foutgelopen bij het verwijderen van de registratie"
+                                alertTitle = "Error"
+                                showAlert = true
+                            }    
+                        }
+                    }) {
+                        Text("Reservatie annuleren")
+                            .padding()
+                            .background(Color(#colorLiteral(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)))
+                            .foregroundColor(.white)
+                            .bold()
+                            .cornerRadius(10)
+                    }
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text(alertTitle),
+                            message: Text(alertMessage),
+                            primaryButton: .default(Text("OK"), action: {
+                                activity.amount = 0
+                            }),
+                            secondaryButton: .cancel()
+                        )
+                    }
                 }
             }
         }
@@ -53,4 +103,31 @@ struct DetailScreen: View {
             return Color.primary
         }
     }
+    
 }
+private func formattedDate(_ dateString: String) -> String {
+    let dateFormatter = ISO8601DateFormatter()
+    dateFormatter.formatOptions = [.withFullDate, .withDashSeparatorInDate]
+    let date = dateFormatter.date(from: dateString) ?? Date()
+    
+    let dateFormatter2 = DateFormatter()
+    dateFormatter2.dateStyle = .short
+    return dateFormatter2.string(from: date)
+}
+
+private func formattedTimeRange(_ startTime: String, endTime: String) -> String {
+    let dateFormatter = ISO8601DateFormatter()
+    dateFormatter.formatOptions = [.withFullDate, .withTime, .withDashSeparatorInDate, .withColonSeparatorInTime]
+    
+    let startTime = dateFormatter.date(from: startTime) ?? Date()
+    let endTime = dateFormatter.date(from: endTime) ?? Date()
+    
+    let dateFormatter2 = DateFormatter()
+    dateFormatter2.timeStyle = .short
+    
+    let startTimeString = dateFormatter2.string(from: startTime)
+    let endTimeString = dateFormatter2.string(from: endTime)
+    
+    return "\(startTimeString) - \(endTimeString)"
+}
+

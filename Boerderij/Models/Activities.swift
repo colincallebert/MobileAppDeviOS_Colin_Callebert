@@ -12,6 +12,8 @@ struct ActivityAPI: Codable, Hashable {
     let endtime: String
     let description: String
     let maxregistrations: Int
+    var amount: Int
+    
 }
 
 func getAllActivities() async throws -> [ActivityAPI] {
