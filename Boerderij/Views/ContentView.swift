@@ -18,7 +18,7 @@ struct ContentView: View {
                             SearchBar(text: $searchText)
                                 .padding(.vertical)
                             VStack(spacing: 20) {
-                                ForEach(contentController.filterActivities(searchText: searchText), id: \.self) { activity in
+                                ForEach(activities, id: \.self) { activity in
                                     FunctiesView(
                                         imageName:  activity.description.components(separatedBy:"|")[1],
                                         title: activity.title,
@@ -30,13 +30,11 @@ struct ContentView: View {
                             }
                         }
                         .padding()
+                        .onChange(of: searchText) {_, newSearchText in
+                            filterActivities()
+                        }
                         .task {
-                            do {
-                                activities = try await getAllActivities()
-                                contentController.activities = activities
-                            } catch {
-                                print("Error fetching data: \(error)")
-                            }
+                            filterActivities()
                         }
                     }
                 }
@@ -52,6 +50,16 @@ struct ContentView: View {
                     Image(systemName: "list.bullet")
                     Text("Activiteiten")
                 }
+        }
+    }
+    
+    func filterActivities() {
+        Task {
+            do {
+                activities = try await contentController.filterActivities(searchText: searchText)
+            } catch {
+                print("Error fetching data: \(error)")
+            }
         }
     }
     

@@ -2,13 +2,19 @@ import Foundation
 
 class ContentController: ObservableObject {
     @Published var activities: [ActivityAPI] = []
-
-    func filterActivities(searchText: String) -> [ActivityAPI] {
+    
+    func filterActivities(searchText: String) async throws -> [ActivityAPI] {
+        let allActivities = try await getAllActivities()
         guard !searchText.isEmpty else {
-            return activities
+            return allActivities
         }
-        return activities.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
+        return allActivities.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
     }
+    
+    func getActivity(id: Int) async throws -> ActivityAPI {
+        return try await getActivitieById(activityid: id)
+    }
+    
     
     func registreren(activityId: Int, amount: Int) async throws {
         let registration = Registration(

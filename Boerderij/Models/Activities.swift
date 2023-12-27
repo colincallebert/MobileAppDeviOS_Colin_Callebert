@@ -28,3 +28,12 @@ func getAllActivities() async throws -> [ActivityAPI] {
         return []
     }
 }
+
+func getActivitieById(activityid: Int) async throws -> ActivityAPI {
+    let url = URL(string: "http://localhost:9000/api/activities/\(activityid)")!
+    let (data, _) = try await URLSession.shared.data(from: url)
+
+    let activity = try JSONDecoder().decode(ActivityAPI.self, from: data)
+
+    return activity
+}

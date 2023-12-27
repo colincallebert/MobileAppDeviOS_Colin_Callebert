@@ -48,7 +48,14 @@ struct DetailScreen: View {
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
-                    .sheet(isPresented: $showingReservationForm) {
+                    .sheet(isPresented: $showingReservationForm, onDismiss: {
+                        Task {
+                            do {
+                                activity = try await contentController.getActivity(id: activity.id)
+                            }
+                        }
+                    }
+                    ) {
                         ReservationFormView(activity: activity)
                     }
                 }
@@ -78,10 +85,9 @@ struct DetailScreen: View {
                         Alert(
                             title: Text(alertTitle),
                             message: Text(alertMessage),
-                            primaryButton: .default(Text("OK"), action: {
+                            dismissButton: .default(Text("OK"), action: {
                                 activity.amount = 0
-                            }),
-                            secondaryButton: .cancel()
+                            })
                         )
                     }
                 }

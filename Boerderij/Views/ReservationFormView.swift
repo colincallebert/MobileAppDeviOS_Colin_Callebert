@@ -36,10 +36,6 @@ struct ReservationFormView: View {
                 TextField("Email", text: $userEmail)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
-                DatePicker("Datum:", selection: $selectedDate, displayedComponents: .date)
-                    .datePickerStyle(CompactDatePickerStyle())
-                    .font(.headline)
-                
                 Stepper("Aantal Personen: \(numberOfPeople)", value: $numberOfPeople, in: 1...activity.maxregistrations)
                     .font(.headline)
                
@@ -71,11 +67,9 @@ struct ReservationFormView: View {
                 Alert(
                     title: Text(alertTitle),
                     message: Text(alertMessage),
-                    primaryButton: .default(Text("OK"), action: {
+                    dismissButton: .default(Text("OK"), action: {
                         presentationMode.wrappedValue.dismiss()
-                        activity.amount = numberOfPeople
-                    }),
-                    secondaryButton: .cancel()
+                    })
                 )
             }
         }
