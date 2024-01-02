@@ -1,7 +1,7 @@
 import Foundation
 
 struct Wrapper: Codable {
-    let items: [ActivityAPI]?
+    let activities: [ActivityAPI]?
     let count: Int
 }
 
@@ -22,7 +22,7 @@ func getAllActivities() async throws -> [ActivityAPI] {
 
     let wrapper = try JSONDecoder().decode(Wrapper.self, from: data)
 
-    if let jsonItems = wrapper.items {
+    if let jsonItems = wrapper.activities {
         return jsonItems
     } else {
         return []
